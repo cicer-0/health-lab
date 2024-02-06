@@ -1,0 +1,54 @@
+<!-- layers/presentation/views/register/examRegistration/examRegistration.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../../css/styles.css" />
+    <link rel="stylesheet" href="examRegistration.css" />
+    <title>Registro de Exámenes</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Bienvenido al Sistema de Laboratorio</h1>
+      <nav>
+        <a href="../../visualize/visualizePage.html">Visualizar</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Registro de Exámenes</h2>
+      <form id="examRegistrationForm">
+        <!-- Add form fields for exam registration -->
+        <label for="requestDate">Fecha de Solicitud:</label>
+        <input type="date" id="requestDate" name="requestDate" />
+
+        <label for="requestingDoctor">Médico Solicitante:</label>
+        <select id="requestingDoctor" name="requestingDoctor">
+          <!-- Options will be populated dynamically from backend -->
+        </select>
+
+        <label for="patient">Paciente:</label>
+        <select id="patient" name="patient">
+          <!-- Options will be populated dynamically from backend -->
+        </select>
+
+        <div id="examTypesContainer">
+          <!-- Dynamic fields for exam types will be added here -->
+        </div>
+
+        <button type="button" id="addExamTypeBtn">Añadir Tipo de Examen</button>
+        <button type="button" id="registerExamBtn">Registrar Examen</button>
+      </form>
+    </main>
+
+    <footer>
+      <!-- Add footer content if needed -->
+    </footer>
+
+    <script type="module" src="../../../../../js/app.js"></script>
+    <script type="module" src="examRegistration.js"></script>
+    <script></script>
+  </body>
+</html>

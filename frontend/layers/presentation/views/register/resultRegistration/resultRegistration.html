@@ -1,0 +1,53 @@
+<!-- layers/presentation/views/register/resultRegistration/resultRegistration.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <link rel="stylesheet" href="resultRegistration.css">
+    <title>Registro de Resultados de Muestras</title>
+</head>
+
+<body>
+    <header>
+        <h1>Bienvenido al Sistema de Laboratorio</h1>
+        <nav>
+            <a href="../../visualize/visualizePage.html">Visualizar</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Registro de Resultados de Muestras</h2>
+        <form id="resultRegistrationForm">
+            <!-- Add form fields for result registration -->
+            <label for="sampleID">ID de Muestra:</label>
+            <input type="text" id="sampleID" name="sampleID" required>
+
+            <label for="resultDate">Fecha de Resultados:</label>
+            <input type="datetime-local" id="resultDate" name="resultDate" required>
+
+            <label for="additionalObservations">Observaciones Adicionales:</label>
+            <textarea id="additionalObservations" name="additionalObservations"></textarea>
+
+            <!-- Add dynamic section for DetalleResultadoMedida -->
+            <div id="detalleResultadoContainer"></div>
+            <button type="button" onclick="addDetalleResultado()">Agregar Detalle de Resultado</button>
+
+            <!-- Add dynamic dropdown for Magnitudes -->
+            <div id="magnitudeDropdownContainer"></div>
+
+            <button type="button" onclick="registerResults()">Registrar Resultados</button>
+        </form>
+    </main>
+
+    <footer>
+        <!-- Add footer content if needed -->
+    </footer>
+
+    <script src="../../../../js/app.js"></script>
+    <script src="resultRegistration.js"></script>
+</body>
+
+</html>

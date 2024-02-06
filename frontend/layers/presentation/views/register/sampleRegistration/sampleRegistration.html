@@ -1,0 +1,51 @@
+<!-- layers/presentation/views/register/sampleRegistration/sampleRegistration.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <link rel="stylesheet" href="sampleRegistration.css">
+    <title>Registro de Muestras</title>
+</head>
+
+<body>
+    <header>
+        <h1>Bienvenido al Sistema de Laboratorio</h1>
+        <nav>
+            <a href="../../visualize/visualizePage.html">Visualizar</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Registro de Muestras</h2>
+        <form id="sampleRegistrationForm">
+            <!-- Add form fields for sample registration -->
+            <label for="examId">ID de Examen:</label>
+            <input type="text" id="examId" name="examId" required readonly>
+
+            <label for="sampleDate">Fecha y Hora de Toma de Muestra:</label>
+            <input type="datetime-local" id="sampleDate" name="sampleDate" required>
+
+            <label for="sampleType">Tipo de Muestra:</label>
+            <select id="sampleType" name="sampleType">
+                <!-- Options will be populated dynamically from backend -->
+            </select>
+
+            <label for="sampleObservations">Observaciones de la Muestra:</label>
+            <textarea id="sampleObservations" name="sampleObservations" rows="4"></textarea>
+
+            <button type="button" onclick="registerSample()">Registrar Muestra</button>
+        </form>
+    </main>
+
+    <footer>
+        <!-- Add footer content if needed -->
+    </footer>
+
+    <script src="../../../../js/app.js"></script>
+    <script src="sampleRegistration.js"></script>
+</body>
+
+</html>

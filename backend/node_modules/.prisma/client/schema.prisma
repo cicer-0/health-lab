@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Configura tu conexión a la base de datos MySQL
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:9fd09rsaf@localhost:3306/health_lab_db" // Puedes especificar tu URL de conexión aquí
+}
+
+model Exam {
+  id            Int        @id @default(autoincrement())
+  requestDate   DateTime
+  doctorId      Int
+  patientId     Int
+  samples       Sample[]
+  doctor        Doctor     @relation(fields: [doctorId], references: [id])
+  patient       Patient    @relation(fields: [patientId], references: [id])
+  details       ExamDetail[]
+}
+
+// Define the model for the "Exam Type" entity
+model ExamType {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  details     ExamDetail[]
+}
+
+// Define the model for the "Exam Details" relationship entity
+model ExamDetail {
+  id            Int       @id @default(autoincrement())
+  examId        Int
+  examTypeId    Int
+  exam          Exam      @relation(fields: [examId], references: [id])
+  examType      ExamType  @relation(fields: [examTypeId], references: [id])
+}
+
+// Define the model for the "Sample Registration" entity
+model Sample {
+  id                Int       @id @default(autoincrement())
+  examId            Int
+  sampleDate        DateTime
+  sampleTypeId      Int
+  observations      String?
+  result           Result?
+  exam              Exam      @relation(fields: [examId], references: [id])
+  sampleType        SampleType @relation(fields: [sampleTypeId], references: [id])
+}
+
+// Define the model for the "Sample Type" entity
+model SampleType {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  samples     Sample[]
+}
+
+// Define the model for the "Magnitude (or Unit of Measure)" entity
+model Magnitude {
+  id           Int       @id @default(autoincrement())
+  name         String
+  unitMeasure  String
+  details      DetailResult[]
+}
+
+// Define the model for the "Sample Results" entity
+model Result {
+  id               Int       @id @default(autoincrement())
+  resultDate       DateTime
+  observations     String?
+  details          DetailResult[]
+  sampleId         Int       @unique
+  sample           Sample    @relation(fields: [sampleId], references: [id])
+}
+
+// Define the model for the "Detail of Measurement Result" relationship entity
+model DetailResult {
+  id                   Int       @id @default(autoincrement())
+  resultId             Int
+  magnitudeId          Int
+  numericValue         Float
+  qualitativeInterpretation String
+  qualitativeResult    String
+  additionalDescription String
+  result               Result    @relation(fields: [resultId], references: [id])
+  magnitude            Magnitude @relation(fields: [magnitudeId], references: [id])
+}
+
+// Define the model for the "Patient Information" entity
+model Patient {
+  id             Int       @id @default(autoincrement())
+  name           String
+  birthDate      DateTime
+  gender         String
+  address        String
+  phoneNumber    String
+  medicalHistory String
+  exams          Exam[]
+}
+
+// Define the model for the "Requesting Doctor Information" entity
+model Doctor {
+  id                Int       @id @default(autoincrement())
+  name              String
+  specialty         String
+  consultationAddress String
+  phoneNumber       String
+  emailAddress      String
+  exams             Exam[]
+}
